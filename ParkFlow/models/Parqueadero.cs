@@ -10,11 +10,16 @@ namespace ParkFlow.models
     {
         private Parqueadero()
         {
+            Id = 0;
+            IdZona = 0;
             Codigo = string.Empty;
             Nivel = 1;
+            CoordX = 0;
+            CoordY = 0;
+            CoordZ = 0;
             Tipo = "VISITANTE";
             PersonaDocumento = string.Empty;
-            VehiculoPlaca = string.Empty;
+            VehiculoPlaca = string.Empty; ;
 
         }
 
