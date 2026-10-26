@@ -7,6 +7,11 @@ namespace ParkFlow.models
 {
     internal class Vivienda : IEntity<int>
     {
+        public int Id { get; set; }
+        public string PersonaDocumento { get; set; }
+        public int Torre { get; set; }
+        public int Piso { get; set; }
+        public int Apartamento { get; set; }
         private Vivienda()
         {
             PersonaDocumento = string.Empty;
@@ -17,10 +22,6 @@ namespace ParkFlow.models
             return new Vivienda();
         }
 
-        public int Id { get; set; }       
-        public string PersonaDocumento { get; set; } 
-        public int Torre { get; set; }
-        public int Piso { get; set; }
-        public int Apartamento { get; set; }
+        
     }
 }

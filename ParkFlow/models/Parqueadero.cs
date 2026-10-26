@@ -8,21 +8,6 @@ namespace ParkFlow.models
 {
     internal class Parqueadero : IEntity<int>
     {
-        private Parqueadero()
-        {
-            Codigo = string.Empty;
-            Nivel = 1;
-            Tipo = "VISITANTE";
-            PersonaDocumento = string.Empty;
-            VehiculoPlaca = string.Empty;
-
-        }
-
-        public static Parqueadero Create()
-        {
-            return new Parqueadero();
-        }
-
         public int Id { get; set; }
         public int IdZona { get; set; }
         public string Codigo { get; set; }
@@ -31,11 +16,30 @@ namespace ParkFlow.models
         public double CoordY { get; set; }
         public double CoordZ { get; set; }
         public string Tipo { get; set; }
-
         public string PersonaDocumento { get; set; }
         public string VehiculoPlaca { get; set; }
+      
+        private Parqueadero()
+        {
+            Id = 0;
+            IdZona = 0;
+            Codigo = string.Empty;
+            Nivel = 1;
+            CoordX = 0;
+            CoordY = 0;
+            CoordZ = 0;
+            Tipo = "VISITANTE";
+            PersonaDocumento = string.Empty;
+            VehiculoPlaca = string.Empty; ;
 
-        public bool Libre {
+        }
+
+        public static Parqueadero Create()
+        {
+            return new Parqueadero();
+        }
+        public bool Libre
+        {
             get { return VehiculoPlaca == string.Empty; }
         }
 
