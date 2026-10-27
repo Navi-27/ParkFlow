@@ -74,7 +74,8 @@ namespace ParkFlow.Infraestructure
                     cmd.Parameters.AddWithValue("@apellido", entity.Apellido);
                     cmd.Parameters.AddWithValue("@movilidad", entity.MovilidadReducida);
                     cmd.Parameters.AddWithValue("@telefono", entity.Telefono);
-                    cmd.Parameters.AddWithValue("@correo", entity.Correo);
+                    cmd.Parameters.AddWithValue("@correo",
+                        string.IsNullOrWhiteSpace(entity.Correo) ? DBNull.Value : entity.Correo);
                     cmd.Parameters.AddWithValue("@tipoPersona",
                     entity is Residente ? "RESIDENTE" : "VISITANTE");
 
@@ -106,7 +107,8 @@ namespace ParkFlow.Infraestructure
                     cmd.Parameters.AddWithValue("@apellido", entity.Apellido);
                     cmd.Parameters.AddWithValue("@movilidad", entity.MovilidadReducida);
                     cmd.Parameters.AddWithValue("@telefono", entity.Telefono);
-                    cmd.Parameters.AddWithValue("@correo", entity.Correo);
+                    cmd.Parameters.AddWithValue("@correo",
+                        string.IsNullOrWhiteSpace(entity.Correo) ? DBNull.Value : entity.Correo);
 
                     cmd.Parameters.AddWithValue("@tipoPersona",
                         entity is Residente ? "RESIDENTE" : "VISITANTE");
