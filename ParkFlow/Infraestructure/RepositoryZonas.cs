@@ -10,7 +10,6 @@ namespace ParkFlow.Infraestructure
 {
     internal class RepositoryZonas : IRepository<Zona, int>
     {
-
         private Zona Map(MySqlDataReader reader)
         {
             Zona zona = Zona.Create();
@@ -25,7 +24,7 @@ namespace ParkFlow.Infraestructure
         }
         public void Add(Zona entity)
         {
-            using (MySqlConnection con = new MySqlConnection())
+            using (MySqlConnection con = Database.CreateConnection())
             {
                 con.Open();
                 string sql = @"INSERT INTO zona
@@ -56,7 +55,7 @@ namespace ParkFlow.Infraestructure
 
         public void Update(Zona entity)
         {
-            using(MySqlConnection con = new MySqlConnection())
+            using (MySqlConnection con = Database.CreateConnection())
             {
                 con.Open();
                 string sql = @"UPDATE zona
@@ -80,7 +79,7 @@ namespace ParkFlow.Infraestructure
 
         public void Delete(int id)
         {
-            using (MySqlConnection con = new MySqlConnection()) 
+            using (MySqlConnection con = Database.CreateConnection())
             {
                 con.Open();
                 string sql = "DELETE FROM zona WHERE id_zona = @id; ";
@@ -96,7 +95,7 @@ namespace ParkFlow.Infraestructure
 
         public bool Exist(int id)
         {
-            t using (MySqlConnection con = Database.CreateConnection())
+            using (MySqlConnection con = Database.CreateConnection())
             {
                 con.Open();
                 string sql = "SELECT COUNT(*) FROM zona WHERE id_zona = @id;";

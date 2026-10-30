@@ -36,7 +36,7 @@ namespace ParkFlow.Infraestructure
             using (MySqlConnection con = Database.CreateConnection())
             {
                 con.Open();
-                string sql = @"INSERT INTO persona
+                string sql = @"INSERT INTO vehiculo
                 (
                     placa,
                     tipo_vehiculo,
@@ -46,7 +46,7 @@ namespace ParkFlow.Infraestructure
                 )
                 VALUES
                 (
-                     @placa,
+                    @placa,
                     @tipo,
                     @persona,
                     @modelo,
@@ -74,10 +74,10 @@ namespace ParkFlow.Infraestructure
                 con.Open();
                 string sql = @"UPDATE vehiculo
                               SET
-                               tipo_vehiculo = @tipo,
-                               persona_documento = @persona,
-                               modelo = @modelo,
-                               marca = @marca
+                              tipo_vehiculo = @tipo,
+                              persona_documento = @persona,
+                              modelo = @modelo,
+                              marca = @marca
                               WHERE placa = @id;";
 
                 using (MySqlCommand cmd = new MySqlCommand(sql, con))
