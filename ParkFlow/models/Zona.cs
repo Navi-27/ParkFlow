@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ParkFlow.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ParkFlow.models
 {
-    internal class Zona
+    internal class Zona : IEntity<int>
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
