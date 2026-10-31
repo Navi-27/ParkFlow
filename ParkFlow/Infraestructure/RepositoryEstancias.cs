@@ -8,7 +8,7 @@ using ParkFlow.Persistence;
 
 namespace ParkFlow.Infraestructure
 {
-    internal class RepositoryEstancias
+    internal class RepositoryEstancias : IRepository<Estancia, int>
     {
         private const string Columnas =
             "id_estancia, vehiculo_placa, id_parqueo, fecha_llegada, fecha_ocupacion, fecha_salida";

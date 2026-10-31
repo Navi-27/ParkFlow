@@ -8,16 +8,16 @@ using ParkFlow.Persistence;
 
 namespace ParkFlow.Infraestructure
 {
-    internal class RepositoryRegistros
+    internal class RepositoryRegistros : IRepository<Registro, int>
     {
         private const string Columnas =
             "id_registro, persona_visitante, persona_visitada, vivienda_id_vivienda, fecha_ingreso, fecha_salida";
 
-        // Convierte una fila de la base en una Estancia
+        // Convierte una fila de la base en un Registro
         private Registro Map(MySqlDataReader reader)
         {
             Registro registro = Registro.Create();
-            registro.Id = reader.GetInt32(reader.GetOrdinal("id_estancia"));
+            registro.Id = reader.GetInt32(reader.GetOrdinal("id_registro"));
             registro.PersonaVisitante = reader.GetString(reader.GetOrdinal("persona_visitante"));
             registro.PersonaVisitada = reader.GetString(reader.GetOrdinal("persona_visitada"));
             registro.IdVivienda = reader.GetInt32(reader.GetOrdinal("vivienda_id_vivienda"));
@@ -36,7 +36,6 @@ namespace ParkFlow.Infraestructure
         private void FillParameters(MySqlCommand cmd, Registro entity)
         {
             cmd.Parameters.AddWithValue("@personaVisitante", entity.PersonaVisitante);
-            cmd.Parameters.AddWithValue("@personaVisitada", entity.PersonaVisitada);
             cmd.Parameters.AddWithValue("@personaVisitada", entity.PersonaVisitada);
             cmd.Parameters.AddWithValue("@idVivienda", entity.IdVivienda);
             cmd.Parameters.AddWithValue("@fechaIngreso", entity.FechaIngreso);
@@ -73,7 +72,7 @@ namespace ParkFlow.Infraestructure
                                    vivienda_id_vivienda = @idVivienda,
                                    fecha_ingreso = @fechaIngreso,
                                    fecha_salida = @fechaSalida
-                               WHERE id_estancia = @id;";
+                               WHERE id_registro = @id;";
                 using (MySqlCommand cmd = new MySqlCommand(sql, con))
                 {
                     FillParameters(cmd, entity);
@@ -153,10 +152,10 @@ namespace ParkFlow.Infraestructure
             return registros;
         }
 
-        // Extra (no esta en IRepository): estancias que aun no han salido
+        // Extra (no esta en IRepository): visitas que aun no han salido
         public IEnumerable<Registro> GetActivas()
         {
-            List<Registro> estancias = new List<Registro>();
+            List<Registro> registros = new List<Registro>();
             using (MySqlConnection con = Database.CreateConnection())
             {
                 con.Open();
@@ -167,12 +166,12 @@ namespace ParkFlow.Infraestructure
                     {
                         while (reader.Read())
                         {
-                            estancias.Add(Map(reader));
+                            registros.Add(Map(reader));
                         }
                     }
                 }
             }
-            return estancias;
+            return registros;
         }
     }
 }

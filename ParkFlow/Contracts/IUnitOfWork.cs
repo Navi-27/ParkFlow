@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ParkFlow.Contracts
 {
-    public interface IUnidOfWork
+    public interface IUnitOfWork
     {
         void Commit();
     }

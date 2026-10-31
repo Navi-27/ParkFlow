@@ -8,7 +8,7 @@ using System.Text;
 
 namespace ParkFlow.Infraestructure
 {
-    internal class RepositoyVehiculos : IRepository<Vehiculo, string>
+    internal class RepositoryVehiculos : IRepository<Vehiculo, string>
     {
         private Vehiculo Map(MySqlDataReader reader)
         {
@@ -42,7 +42,7 @@ namespace ParkFlow.Infraestructure
                     tipo_vehiculo,
                     persona_documento,
                     modelo,
-                    marca,
+                    marca
                 )
                 VALUES
                 (
